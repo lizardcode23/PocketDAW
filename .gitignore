@@ -1,0 +1,16 @@
+# The author's own drop folder: gigabytes of sample packs, and not part of the
+# app. js/audio/folder.js treats a missing samples/ as "nothing to show", so
+# the deployed app is simply one without a shared folder.
+samples/
+
+# Built by tools/stage-deploy.mjs. The repo root is already the deployable
+# app, so this only exists for hosts that are not Pages, or for a build that
+# takes a subfolder of samples along.
+dist/
+
+# OS litter. ._* are macOS resource forks, which match the audio pattern in
+# folder.js and would show up in the app as samples that will not decode.
+.DS_Store
+._*
+Thumbs.db
+desktop.ini

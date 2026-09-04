@@ -1,0 +1,9 @@
+# Pin line endings: the app is served as-is by a static host, and a checkout
+# on Windows should not rewrite every module to CRLF.
+* text=auto eol=lf
+
+*.png binary
+*.wav binary
+*.mp3 binary
+*.ogg binary
+*.flac binary

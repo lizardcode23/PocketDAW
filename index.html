@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#0b0d12">
+<meta name="description" content="Pocket DAW — a touch-first music sequencer that runs entirely in your browser.">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Pocket DAW</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="app" class="app">
+
+  <!-- ------------------------------------------------------------ top -->
+  <header class="topbar">
+    <div class="transport">
+      <button id="btnPlay" class="tbtn play" aria-label="Play / stop">
+        <svg viewBox="0 0 24 24" class="i-play" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        <svg viewBox="0 0 24 24" class="i-stop" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+      </button>
+      <button id="btnMetro" class="tbtn" aria-label="Metronome" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l5 18H7L12 2zm-1.2 6L8 18h8l-1.2-4.5-2.8 2-1.2-1.2 2.6-1.9L12.6 8h-1.8z"/></svg>
+      </button>
+    </div>
+
+    <button id="btnTempo" class="chip tempo" aria-label="Tempo">
+      <span class="chip-val" id="bpmVal">100</span><span class="chip-unit">BPM</span>
+    </button>
+
+    <button id="btnScale" class="chip scale" aria-label="Project scale">
+      <span class="chip-val" id="scaleRoot">C</span><span class="chip-sub" id="scaleName">Minor Pent</span>
+    </button>
+
+    <div class="spacer"></div>
+
+    <div class="undo-group">
+      <button id="btnUndo" class="tbtn small" aria-label="Undo" disabled>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V1L7 6l5 5V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z"/></svg>
+      </button>
+      <button id="btnRedo" class="tbtn small" aria-label="Redo" disabled>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V1l5 5-5 5V7a6 6 0 1 0 6 6h2a8 8 0 1 1-8-8z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- --------------------------------------------------------- tracks -->
+  <nav class="trackstrip" id="trackStrip" aria-label="Tracks"></nav>
+
+  <!-- ------------------------------------------------------------ main -->
+  <main class="stage" id="stage">
+    <section class="view" id="viewEdit" data-view="edit"></section>
+    <section class="view" id="viewPlaylist" data-view="playlist" hidden></section>
+    <section class="view" id="viewSounds" data-view="sounds" hidden></section>
+    <section class="view" id="viewMix" data-view="mix" hidden></section>
+    <section class="view" id="viewSong" data-view="song" hidden></section>
+  </main>
+
+  <!-- --------------------------------------------------------- tabbar -->
+  <nav class="tabbar" role="tablist">
+    <button class="tab active" data-tab="edit" role="tab" aria-selected="true">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h4v14H3zM10 8h4v11h-4zM17 3h4v16h-4z"/></svg><span>Sequence</span>
+    </button>
+    <button class="tab" data-tab="playlist" role="tab" aria-selected="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h8v4H3zm10 0h8v4h-8zM3 11h5v4H3zm7 0h11v4H10zM3 17h11v4H3zm13 0h5v4h-5z"/></svg><span>Playlist</span>
+    </button>
+    <button class="tab" data-tab="sounds" role="tab" aria-selected="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v10.6A4 4 0 1 0 14 17V7h4V3z"/></svg><span>Sound</span>
+    </button>
+    <button class="tab" data-tab="mix" role="tab" aria-selected="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3v8H3v2h2v8h2v-8h2v-2H7V3zm12 0v4h-2v2h2v12h2V9h2V7h-2V3zM11 3v12H9v2h2v4h2v-4h2v-2h-2V3z"/></svg><span>Mix</span>
+    </button>
+    <button class="tab" data-tab="song" role="tab" aria-selected="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v3H4zm0 5h16v3H4zm0 5h10v3H4zm12 0h4v6h-4z"/></svg><span>Song</span>
+    </button>
+  </nav>
+</div>
+
+<!-- --------------------------------------------------------- overlays -->
+<div id="sheetRoot" class="sheet-root" hidden></div>
+<div id="toastRoot" class="toast-root" aria-live="polite"></div>
+<input type="file" id="fileInput" accept="audio/*,.wav,.mp3,.ogg,.m4a,.aac,.flac,.aiff,.aif" multiple hidden>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
